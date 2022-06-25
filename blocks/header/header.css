@@ -1,0 +1,19 @@
+.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 880px;
+    height: 74px;
+    margin: 45px auto 0;
+    background-color: black;
+    color: white;
+}
+
+
+@media screen and (max-width:767px) {
+    .header {
+        width: 320px;
+        height: 56px;
+        margin: 38.25px auto;
+    }
+}

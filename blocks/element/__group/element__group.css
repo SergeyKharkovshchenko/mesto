@@ -1,0 +1,19 @@
+.element__group {
+    width: 30px;
+    height: 30px;
+    background-image: url("../../../images/white_like.svg");
+    background-repeat: no-repeat;
+    background-size: 30px 30px;
+    background-position: center;
+}
+
+.element__group:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.element__group:active {
+    cursor: pointer;
+    opacity: 0.6;
+    background-image: url("../../../images/black_like.svg");
+}

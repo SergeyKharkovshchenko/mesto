@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="Сергей Харьковщенко" />
+    <meta name="keywords" content="проект" />
+    <meta name="description" content="Проект #4" />
+    <title>Mesto</title>
+    <link rel="stylesheet" href="pages/index.css" />
+</head>
+
+<body class="page">
+
+    <!-- блок header -->
+    <header class="header">
+        <div class="header__logo"> </div>
+        <div class="header__line"> </div>
+    </header>
+
+    <main class="main">
+
+        <!-- блок профиль -->
+
+        <section class="profile">
+
+            <div class="profile__card">
+                <img src="./images/custo.jpg" class="profile__avatar">
+
+                <div class="profile__profile-info">
+                    <div class="profile__info-first-line">
+                    <h1 class="profile__title">Жак-Ив Кусто</h1>
+                        <button class="profile__edit-button"> </button>
+                    </div>
+                    <p class="profile__subtitle">Исследователь океана</p>
+                </div>
+            </div>
+
+            <div class="profile__add-button">
+            </div>
+
+        </section>
+
+        <!-- блок элементы -->
+
+        <section>
+            <ul class="elements">
+                <li class="element">
+                    <img src="./images/karach.png" class="element__maskgroup">
+                    <div class="element__bottom">
+                        <h2 class="element__title">Карачаевск</h2>
+                        <div class="element__group">
+                    </div>
+                </li>
+                <li class="element">
+                    <img src="./images/elbrus.png" class="element__maskgroup">
+                    <div class="element__bottom">
+                        <h2 class="element__title">Гора Эльбрус</h2>
+                        <div class="element__group">
+                    </div>
+                </li>
+                <li class="element">
+                    <img src="./images/dombai.png" class="element__maskgroup">
+                    <div class="element__bottom">
+                        <h2 class="element__title">Домбай</h2>
+                        <div class="element__group">
+                    </div>
+                </li>
+                <li class="element">
+                    <img src="./images/elbrus.png" class="element__maskgroup">
+                    <div class="element__bottom">
+                        <h2 class="element__title">Гора Эльбрус</h2>
+                        <div class="element__group">
+                    </div>
+                </li>
+                <li class="element">
+                    <img src="./images/dombai.png" class="element__maskgroup">
+                    <div class="element__bottom">
+                        <h2 class="element__title">Домбай</h2>
+                        <div class="element__group">
+                    </div>
+                </li>
+                <li class="element">
+                    <img src="./images/karach.png" class="element__maskgroup">
+                    <div class="element__bottom">
+                        <h2 class="element__title">Карачаевск</h2>
+                        <div class="element__group">
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+    </main>
+
+    <!-- блок footer -->
+    <footer class="footer">
+        <h2 class="footer__title">© 2020 Mesto Russia</h2>
+    </footer>
+
+
+    <!-- блок попап -->
+
+    <section class="popup">
+        <div class="popup__container">
+            <button class="popup__close"></button>
+
+            <h2 class="popup__title">Редактировать профиль</h2>
+
+            <input type="text" class="popup__field1" type='text'>
+            <div class="popup__line"> </div>     
+            <input type="text" class="popup__field2" type='text'>
+            <div class="popup__line"> </div>
+            <button type="submit" class="popup__submit-button">Сохранить</button>
+        </div>
+
+    </section>
+
+    <script src="./scripts/index.js"></script>
+
+</body>
+
+</html>
