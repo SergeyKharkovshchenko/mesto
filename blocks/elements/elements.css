@@ -1,6 +1,6 @@
 .elements {
     width: 880px;
-    height: 744px;
+    min-height: 744px;
     margin: 0 auto;
     padding: 0;
     display: grid;

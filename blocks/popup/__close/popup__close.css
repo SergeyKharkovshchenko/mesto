@@ -5,9 +5,10 @@
     background-repeat: no-repeat;
     background-size: 32px 32px;
     background-position: center;
-    background-color: black;
+    background-color: transparent;
     margin-top: -38px;
     margin-left: 438px;
+    border: none;
 }
 
 

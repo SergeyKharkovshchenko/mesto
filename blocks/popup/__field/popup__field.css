@@ -1,17 +1,19 @@
-.popup__field1 {
+.popup__field {
     width: 358px;
-    height: 14px;
+    min-height: 27px;
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
-    margin: 51px auto 0 auto;
     padding: 0;
     border: none;
+    border-bottom-width: 1px; 
+    border-bottom-style: solid; 
+    border-bottom-color: #545454;
 }
 
+
 @media screen and (max-width:767px) {
-    .popup__field1 {
+    .popup__field {
         width: 238px;
-        margin: 75px auto 0 auto;
     }
 }

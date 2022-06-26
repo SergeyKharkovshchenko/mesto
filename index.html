@@ -17,7 +17,7 @@
     <!-- блок header в новой git ветке-->
     <header class="header">
         <div class="header__logo"> </div>
-        <div class="header__line"> </div>
+        <!-- <div class="header__line"> </div> -->
 
     </header>
 
@@ -33,14 +33,14 @@
                 <div class="profile__profile-info">
                     <div class="profile__info-first-line">
                         <h1 class="profile__title">Жак-Ив Кусто</h1>
-                        <button class="profile__edit-button"> </button>
+                        <button class="profile__edit-button" type="button"> </button>
                     </div>
                     <p class="profile__subtitle">Исследователь океана</p>
                 </div>
             </div>
 
-            <div class="profile__add-button">
-            </div>
+            <button class="profile__add-button" type="button">
+            </button>
 
         </section>
 
@@ -52,42 +52,42 @@
                     <img src="./images/karach.png" class="element__maskgroup" alt="гора Карач">
                     <div class="element__bottom">
                         <h2 class="element__title">Карачаевск</h2>
-                        <div class="element__group"></div>
+                        <button class="element__group" type="button"></button>
                         </div>
                 </li>
                 <li class="element">
                     <img src="./images/elbrus.png" class="element__maskgroup" alt="гора Эльбрус">
                     <div class="element__bottom">
                         <h2 class="element__title">Гора Эльбрус</h2>
-                        <div class="element__group"></div>
+                        <button class="element__group" type="button"></button>
                         </div>
                 </li>
                 <li class="element">
                     <img src="./images/dombai.png" class="element__maskgroup"  alt="гора Домбай">
                     <div class="element__bottom">
                         <h2 class="element__title">Домбай</h2>
-                        <div class="element__group"></div>
+                        <button class="element__group" type="button"></button>
                         </div>
                 </li>
                 <li class="element">
                     <img src="./images/elbrus.png" class="element__maskgroup" alt="гора Эльбрус">
                     <div class="element__bottom">
                         <h2 class="element__title">Гора Эльбрус</h2>
-                        <div class="element__group"></div>
+                        <button class="element__group" type="button"></button>
                         </div>
                 </li>
                 <li class="element">
                     <img src="./images/dombai.png" class="element__maskgroup" alt="гора Домбай">
                     <div class="element__bottom">
                         <h2 class="element__title">Домбай</h2>
-                        <div class="element__group"></div>
+                        <button class="element__group" type="button"></button>
                         </div>
                 </li>
                 <li class="element">
                     <img src="./images/karach.png" class="element__maskgroup"  alt="гора Карач">
                     <div class="element__bottom">
                         <h2 class="element__title">Карачаевск</h2>
-                        <div class="element__group"></div>
+                        <button class="element__group" type="button"></button>
                         </div>
                 </li>
             </ul>
@@ -97,7 +97,7 @@
 
     <!-- блок footer -->
     <footer class="footer">
-        <h2 class="footer__title">© 2020 Mesto Russia</h2>
+        <p class="footer__title">© 2020 Mesto Russia</p>
     </footer>
 
 
@@ -105,14 +105,12 @@
 
     <section class="popup">
         <div class="popup__container">
-            <button class="popup__close"></button>
+            <button class="popup__close" type="button"></button>
 
             <h2 class="popup__title">Редактировать профиль</h2>
 
-            <input type="text" class="popup__field1">
-            <div class="popup__line"> </div>
-            <input type="text" class="popup__field2">
-            <div class="popup__line"> </div>
+            <input type="text" class="popup__field popup__field_type_name">
+            <input type="text" class="popup__field popup__field_type_job">
             <button type="submit" class="popup__submit-button">Сохранить</button>
         </div>
 

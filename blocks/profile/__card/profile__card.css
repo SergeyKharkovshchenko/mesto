@@ -1,6 +1,6 @@
 .profile__card{
     display: flex;
-    height: 120px;
+    min-height: 120px;
     margin: 0;
     padding: 0;
 }

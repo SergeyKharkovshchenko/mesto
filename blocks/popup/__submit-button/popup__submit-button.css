@@ -9,6 +9,7 @@
     font-weight: 400;
     font-size: 18px;
     line-height: 22px;
+    border: none;
 }
 
 
@@ -18,7 +19,7 @@
         height: 46px;
         font-size: 14px;
         line-height: 16.94px;
-        margin-top: 45px auto 25px auto;
+        margin: 45px auto 25px auto;
     }
 }
 
