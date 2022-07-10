@@ -1,16 +1,18 @@
-.popup {
+.image-popup{
     position: fixed;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: black;
     height: 0;
     overflow: hidden; 
+    background-color: rgba(0, 0, 0, 0.5);
+    color: black;
+    z-index: 3;
 }
 
+
+
 @media screen and (max-width:767px) {
-    .popup {
+    .image-popup {
         margin: 122px auto auto auto;
     }
 }
-

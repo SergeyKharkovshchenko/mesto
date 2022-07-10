@@ -1,0 +1,11 @@
+.image-popup_is-opened{
+    /* display: flex;     */
+    /* opacity: 1; */
+    /* visibility: visible; */
+    height: 100%;
+    width: 100%;
+    animation: fade-in 2s;
+}
+
+
+

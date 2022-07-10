@@ -8,7 +8,9 @@
 https://sergeykharkovshchenko.github.io/mesto/
 
 + Использованы технологии:
+  + js функции
+  + js массивы
   + grid
   + flex
   + DOM
-  + event handler
+  + js event handler

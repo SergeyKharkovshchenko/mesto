@@ -1,3 +1,16 @@
 .popup_is-opened{
-    display: flex;
+    height: 100%;
+    width: 100%;
+    animation: fade-in 2s;
 }
+
+
+@keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
