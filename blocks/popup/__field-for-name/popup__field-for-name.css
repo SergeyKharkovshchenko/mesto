@@ -1,9 +1,9 @@
-.popup__field_type_name {
+.popup__field-for-name {
     margin: 51px auto 0 auto;
 }
 
 @media screen and (max-width:767px) {
-    .popup__field_type_name {
+    .popup__field-for-name {
         margin: 75px auto 0 auto;
     }
 }
