@@ -30,13 +30,9 @@
 @import url(../blocks/popup/__field-for-job/field__field-for-job.css);
 @import url(../blocks/popup/__field-for-name/popup__field-for-name.css);
 @import url(../blocks/popup/__close/popup__close.css);
-@import url(../blocks/popup/_is-opened/popup_is-opened.css);
-@import url(../blocks/popup/_was-opened/popup_was-opened.css);
-@import url(../blocks/image-popup/image-popup.css);
+@import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/image-popup/__container/image-popup__container.css);
-@import url(../blocks/image-popup/__close/image-popup__close.css);
 @import url(../blocks/image-popup/__foto/image-profile__foto.css);
 @import url(../blocks/image-popup/__title/image-popup__title.css);
-@import url(../blocks/image-popup/_is-opened/image-popup_is-opened.css);
-@import url(../blocks/image-popup/_was-opened.css/image-popup_was-opened.css);
+
 
