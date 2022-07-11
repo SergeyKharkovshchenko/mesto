@@ -5,8 +5,8 @@ const jobInputForEdit = document.querySelector('.popup__field-for-job_type_edit'
 const nameInputForAdd = document.querySelector('.popup__field-for-name_type_add');
 const jobInputForAdd = document.querySelector('.popup__field-for-job_type_add');
 
-const formInputForEdit = document.querySelector('.popup__formtype_edit');
-const formInputForAdd = document.querySelector('.popup__formtype_add');
+const formInputForEdit = document.querySelector('.popup__form-edit');
+const formInputForAdd = document.querySelector('.popup__form-add');
 
 const popupElementForImage = document.querySelector('.image-popup');
 const popupTitleElementForImage = document.querySelector('.image-popup__title');
