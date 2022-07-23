@@ -144,5 +144,20 @@ closeButtons.forEach((button) => {
   button.addEventListener('click', () => closePopup(popup));
 });
 
+formInputForEdit.addEventListener('keydown', (e) => {
+  if (e.key === "Escape") {
+    closePopup(popupElementForEdit);
+}
+});
 
+formInputForAdd.addEventListener('keydown', (e) => {
+  if (e.key === "Escape") {
+    closePopup(popupElementForAdd);
+}
+});
 
+document.addEventListener('click', function(e) {
+  if(e.target.classList.contains('popup_opened')){
+    closePopup(e.target);
+  }
+});

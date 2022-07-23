@@ -76,22 +76,25 @@
         <form class="popup__container popup__form-edit">
             <button class="popup__close popup__close_type_edit" type="button"></button>
             <h2 class="popup__title">Редактировать профиль</h2>
-            <input type="text" class="popup__field popup__field-for-name popup__field-for-name_type_edit">
-            <input type="text" class="popup__field popup__field-for-job popup__field-for-job_type_edit">
-            <button type="submit" class="popup__submit-button popup__submit-button_type-edit">Сохранить</button>
+            <input type="text" class="popup__field popup__field-for-name popup__field-for-name_type_edit" minlength="2" maxlength="40" required>
+            <span class="popup__error"></span> 
+            <input type="text" class="popup__field popup__field-for-job popup__field-for-job_type_edit" minlength="2" maxlength="200" required>
+            <span class="popup__error"></span> 
+            <button type="submit" class="popup__submit-button popup__submit-button_type-edit popup__button_invalid">Сохранить</button>
         </form>
     </section>
 
     <section class="popup popup_add">
-        <form class="popup__container popup__form-add">
+        <form class="popup__container popup__form-add" name="formAdd">
             <button class="popup__close popup__close_type_add" type="button"></button>
             <h2 class="popup__title">Новое место</h2>
-            <input type="text" class="popup__field popup__field-for-name popup__field-for-name_type_add">
-            <input type="text" class="popup__field popup__field-for-job popup__field-for-job_type_add">
-            <button type="submit" class="popup__submit-button popup__submit-button_type-add">Создать</button>
+            <input type="text" class="popup__field popup__field-for-name popup__field-for-name_type_add" minlength="2" maxlength="30" required>
+            <span class="popup__error"></span> 
+            <input type="url" class="popup__field popup__field-for-job popup__field-for-job_type_add" required>
+            <span class="popup__error"></span> 
+            <button type="submit" class="popup__submit-button popup__submit-button_type-add popup__button_invalid" disabled>Создать</button>
             </form>
     </section>
-
 
     <section class="popup image-popup">
         <div class="image-popup__container">
@@ -102,6 +105,7 @@
     </section>
 
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
 
 </body>
 
