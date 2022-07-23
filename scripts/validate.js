@@ -51,12 +51,12 @@ function setSubmitButtonStatus(form) {
 
     if (isValid) {
         button.removeAttribute('disabled');
-        button.classList.remove('popup_button-type_invalid');
-        button.classList.add('popup_button-type_valid');
+        button.classList.remove('popup__submit-button_activity_invalid');
+        button.classList.add('popup__submit-button_activity_valid');
     } else {
         button.setAttribute('disabled', true);
-        button.classList.add('popup_button-type_invalid');
-        button.classList.remove('popup_button-type_valid');
+        button.classList.add('popup__submit-button_activity_invalid');
+        button.classList.remove('popup__submit-button_activity_valid');
     }
 }
 
