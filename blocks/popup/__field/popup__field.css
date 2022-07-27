@@ -1,5 +1,6 @@
 .popup__field {
     width: 358px;
+    height: 14px;
     min-height: 27px;
     font-weight: 400;
     font-size: 14px;
@@ -16,5 +17,6 @@
 @media screen and (max-width:767px) {
     .popup__field {
         width: 238px;
+        height: 14px;
     }
 }

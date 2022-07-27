@@ -1,12 +1,14 @@
 .element__heart {
-    width: 36px;
-    height: 30px;
+    width: 28px;
+    height: 20px;
     background-image: url("../../../images/white_like.svg");
     background-repeat: no-repeat;
-    background-size: 30px 30px;
+    background-size: 22px 19px;
     background-position: center;
     border: none;
     background-color: transparent;
+    padding: 0;
+    margin: 0;
 }
 
 .element__heart:hover {

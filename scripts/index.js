@@ -15,7 +15,7 @@ const popupOpenButtonElementForEdit = document.querySelector('.profile__edit-but
 const popupOpenButtonElementForAdd = document.querySelector('.profile__add-button');
 const nameElement = document.querySelector('.profile__title');
 const jobElement = document.querySelector('.profile__subtitle');
-const cards = document.querySelector('.elements');
+const cardsContainer = document.querySelector('.elements');
 const cardTemplate = document.querySelector('#card_template').content;
 
 const initialCards = [{
@@ -57,10 +57,10 @@ const handleThrashbin = function (e) {
 
 const handleFoto = function (e) {
     openPopup(popupElementForImage);
-    const card = e.target.closest('.element')
-    popupTitleElementForImage.textContent = card.querySelector('.element__title').textContent;
-    popupFotoElementForImage.src = card.querySelector('.element__foto').src;
-    popupFotoElementForImage.alt = card.querySelector('.element__title').textContent;; // ? name : initialCards[index].name;
+    const target = e.target;
+    popupTitleElementForImage.textContent = target.alt;
+    popupFotoElementForImage.src = target.src;
+    popupFotoElementForImage.alt = target.alt;
 }
 
 
@@ -86,9 +86,9 @@ return cardElement
 const addCard = function (name, link, index) {
   const cardElement = createCard(name, link);
   if (index != null) {
-    cards.append(cardElement);
+    cardsContainer.append(cardElement);
   } else {
-    cards.prepend(cardElement);
+    cardsContainer.prepend(cardElement);
   }
 };
 
@@ -108,8 +108,8 @@ const openAddPopup = function (e) {
 
 function handleFormEditSubmit(evt) {
   evt.preventDefault();
-  nameElement.textContent = nameInputForEdit.value ? nameInputForEdit.value : nameElement.textContent;
-  jobElement.textContent = jobInputForEdit.value ? jobInputForEdit.value : jobElement.textContent;
+  nameElement.textContent = nameInputForEdit.value;
+  jobElement.textContent = jobInputForEdit.value;
   closePopup(popupElementForEdit);
 }
 
@@ -122,10 +122,12 @@ function handleFormAddSubmit(e) {
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeByEsc);
 }
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closeByEsc);
 }
 
 popupOpenButtonElementForEdit.addEventListener('click', openEditPopup);
@@ -135,28 +137,33 @@ formInputForEdit.addEventListener('submit', handleFormEditSubmit);
 formInputForAdd.addEventListener('submit', handleFormAddSubmit);
 
 // находим все крестики проекта по универсальному селектору
-const closeButtons = document.querySelectorAll('.popup__close');
+const closerButtons = document.querySelectorAll('.popup__close');
 
-closeButtons.forEach((button) => {
+closerButtons.forEach((button) => {
   // находим 1 раз ближайший к крестику попап 
   const popup = button.closest('.popup');
   // устанавливаем обработчик закрытия на крестик
   button.addEventListener('click', () => closePopup(popup));
 });
 
-formInputForEdit.addEventListener('keydown', (e) => {
-  if (e.key === "Escape") {
-    closePopup(popupElementForEdit);
-}
+
+
+
+function closeByEsc(evt) {
+  if (evt.key === "Escape") {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup); 
+  }
+}  
+
+
+popupElementForEdit.addEventListener('click', function(e) {
+  if(e.target.classList.contains('popup_opened')){
+    closePopup(e.target);
+  }
 });
 
-formInputForAdd.addEventListener('keydown', (e) => {
-  if (e.key === "Escape") {
-    closePopup(popupElementForAdd);
-}
-});
-
-document.addEventListener('click', function(e) {
+popupElementForAdd.addEventListener('click', function(e) {
   if(e.target.classList.contains('popup_opened')){
     closePopup(e.target);
   }

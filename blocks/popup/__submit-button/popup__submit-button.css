@@ -23,7 +23,7 @@
     }
 }
 
-.popup__submit-button:hover {
+.popup__submit-button:enabled:hover {
     cursor: pointer;
     background: rgba(0, 0, 0, 0.8);
 }
