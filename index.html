@@ -74,7 +74,7 @@
 
 
     <section class="popup popup_edit">
-        <form class="popup__container popup__form-edit" >
+        <form class="popup__container popup__form-edit" novalidate>
             <button class="popup__close popup__close_type_edit" type="button"></button>
             <h2 class="popup__title">Редактировать профиль</h2>
             <input type="text" class="popup__field popup__field-for-name popup__field-for-name_type_edit" minlength="2" maxlength="40" required>
@@ -86,7 +86,7 @@
     </section>
 
     <section class="popup popup_add">
-        <form class="popup__container popup__form-add" >
+        <form class="popup__container popup__form-add" novalidate>
             <button class="popup__close popup__close_type_add" type="button"></button>
             <h2 class="popup__title">Новое место</h2>
             <input type="text" class="popup__field popup__field-for-name popup__field-for-name_type_add" minlength="2" maxlength="30" required>
@@ -100,7 +100,7 @@
 
 
     <section class="popup image-popup">
-        <div class="image-popup__container">
+        <div class="popup__container image-popup__container" novalidate>
             <button class="popup__close image-popup__close" type="button"></button>
             <img class="image-popup__foto" >
             <h2 class="image-popup__title"></h2>

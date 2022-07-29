@@ -168,3 +168,9 @@ popupElementForAdd.addEventListener('click', function(e) {
     closePopup(e.target);
   }
 });
+
+popupElementForImage.addEventListener('click', function(e) {
+  if(e.target.classList.contains('popup_opened')){
+    closePopup(e.target);
+  }
+});

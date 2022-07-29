@@ -1,4 +1,4 @@
-.image-popup{
+.image-popup.popup_opened{
     background: #000000;
-opacity: 0.9;
-}
+    opacity: 0.9;
+  }

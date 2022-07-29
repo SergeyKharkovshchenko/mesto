@@ -6,10 +6,8 @@ const config = {
 }
 
 
-const setEventListeners = (formElement) => {
-    formElement.addEventListener('submit', (event) => handleFormSubmit(event, formElement));
-    formElement.addEventListener('input', (event) => handleFormInput(event, formElement));
-    formElement.addEventListener('url', (event) => handleFormInput(event, formElement));
+const setEventListeners = (formElement, settings) => {
+    formElement.addEventListener('input', (event) => handleFormInput(event, formElement, settings));
 };
 
 
@@ -17,28 +15,28 @@ const setEventListeners = (formElement) => {
 const enableValidation = (settings) => {
     const form = Array.from(document.querySelectorAll(settings.popup_form));
     form.forEach((formElement) => {
-        setEventListeners(formElement);
+        setEventListeners(formElement, settings);
     });
 };
 
 enableValidation(config);
 
-function handleFormInput(event, formElement) {
+function handleFormInput(event, formElement, settings) {
     const input = event.target;
     setErrorText(input);
     showError(input);
-    setSubmitButtonStatus(event, formElement);
+    setSubmitButtonStatus(event, formElement, settings);
 
 }
 
-function handleFormSubmit(event, formElement) {
+function handleFormSubmit(event, formElement, settings) {
     event.preventDefault();
     const form = event.target;
     const isValid = form.checkValidity();
     if (isValid) {
         form.reset();
     } else {
-        setSubmitButtonStatus(event, formElement);
+        setSubmitButtonStatus(event, formElement, settings);
     }
 }
 
@@ -72,17 +70,17 @@ function setErrorText(input) {
 
 
 
-function setSubmitButtonStatus(event, formElement) {
-    const button = event.currentTarget.querySelector(config.submit_button);
+function setSubmitButtonStatus(event, formElement, settings) {
+    const button = event.currentTarget.querySelector(settings.submit_button);
     const isValid = formElement.checkValidity();
 
     if (isValid) {
         button.removeAttribute('disabled');
-        button.classList.remove(config.button_invalid);
-        button.classList.add(config.button_valid);
+        button.classList.remove(settings.button_invalid);
+        button.classList.add(settings.button_valid);
     } else {
         button.setAttribute('disabled', true);
-        button.classList.add(config.button_invalid);
-        button.classList.remove(config.button_valid);
+        button.classList.add(settings.button_invalid);
+        button.classList.remove(settings.button_valid);
     }
 }

@@ -14,8 +14,7 @@
 
 @media screen and (max-width:767px) {
     .image-popup__container {
-        width: 282px;
-        height: 322px;
-        margin: 36px auto auto auto;
+        max-width: 240px;
+        margin: 136px auto auto auto;
     }
 }

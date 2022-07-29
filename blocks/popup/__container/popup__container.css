@@ -16,6 +16,7 @@
     .popup__container {
         width: 282px;
         height: 322px;
-        margin: 36px auto auto auto;
+        /* margin: 36px auto auto auto; */
+        margin: 122px auto auto auto;
     }
 }
