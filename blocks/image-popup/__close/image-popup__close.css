@@ -1,5 +1,6 @@
 @media screen and (max-width:767px) {
     .image-popup__close {
         margin-left: 224px;
+        margin-bottom: 0;
     }
 }

@@ -1,4 +1,4 @@
-/* .popup__container {
+.popup__set {
     margin: 195px auto auto auto;
     padding: 0;
     display: flex;
@@ -14,9 +14,9 @@
 
 
 @media screen and (max-width:767px) {
-    .popup__container {
+    .popup__set {
         width: 282px;
         height: 322px;
         margin: calc((100vh - 322px)/2) auto;
     }
-} */
+}
