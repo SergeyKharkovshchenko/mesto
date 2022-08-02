@@ -1,15 +1,10 @@
 .image-popup__foto{
     object-fit: fill;
     overflow: auto;
-    height: 540px;
+    max-width: 75vw;
+    max-height: calc(80vh - 64px);
 }
 
-@media screen and (max-width:900px) {
-    .image-popup__foto {
-        height: 400px;
-        width: fit-content;
-    }
-}
 
 @media screen and (max-width:767px) {
     .image-popup__foto {
