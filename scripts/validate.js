@@ -22,7 +22,7 @@ const hideInputError = (formElement, inputElement) => {
 
 
 const checkInputValidity = (formElement, inputElement) => {
-    setErrorText(inputElement);
+    // setErrorText(inputElement);
     if (!inputElement.validity.valid) {
         showInputError(formElement, inputElement, inputElement.validationMessage);
     } else {
@@ -31,22 +31,22 @@ const checkInputValidity = (formElement, inputElement) => {
 };
 
 
-function setErrorText(input) {
-    const validity = input.validity;
-    input.setCustomValidity('');
-    if (validity.valueMissing) {
-        input.setCustomValidity('Поле пустое');
-    }
-    if (validity.tooLong) {
-        input.setCustomValidity('Много символов');
-    }
-    if (validity.tooShort) {
-        input.setCustomValidity('Мало символов');
-    }
-    if (validity.typeMismatch && input.type === 'url') {
-        input.setCustomValidity('Введите ссылку');
-    }
-}
+// function setErrorText(input) {
+//     const validity = input.validity;
+//     input.setCustomValidity('');
+//     if (validity.valueMissing) {
+//         input.setCustomValidity('Поле пустое');
+//     }
+//     if (validity.tooLong) {
+//         input.setCustomValidity('Много символов');
+//     }
+//     if (validity.tooShort) {
+//         input.setCustomValidity('Мало символов');
+//     }
+//     if (validity.typeMismatch && input.type === 'url') {
+//         input.setCustomValidity('Введите ссылку');
+//     }
+// }
 
 
 
