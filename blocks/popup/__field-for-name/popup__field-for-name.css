@@ -2,9 +2,8 @@
     margin: 51px auto 0 auto;
 }
 
-@media screen and (max-width:767px) {
+@media screen and (max-width:550px) {
     .popup__field-for-name {
         margin: 75px auto 0 auto;
-        height: 14px;
     }
 }

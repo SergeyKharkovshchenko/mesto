@@ -1,7 +1,6 @@
 .popup__field {
     width: 358px;
     height: 14px;
-    min-height: 27px;
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
@@ -14,9 +13,8 @@
 }
 
 
-@media screen and (max-width:767px) {
+@media screen and (max-width:550px) {
     .popup__field {
         width: 238px;
-        height: 14px;
     }
 }

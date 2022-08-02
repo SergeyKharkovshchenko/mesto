@@ -13,7 +13,7 @@
 }
 
 
-@media screen and (max-width:767px) {
+@media screen and (max-width:550px) {
     .popup__submit-button {
         width: 238px;
         height: 46px;

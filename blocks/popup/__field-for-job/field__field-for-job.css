@@ -1,12 +1,6 @@
 .popup__field-for-job {
-    margin: 13px auto 0 auto;
+    margin: 0 auto;
     }
 
-    @media screen and (max-width:767px) {
-        .popup__field-for-job {
-            margin: 12px auto 0 auto;
-            height: 14px;
-        }
-    }
 
 

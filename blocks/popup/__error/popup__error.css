@@ -5,19 +5,19 @@
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
-    line-height: 15px;
+    line-height: 14.52px;
     color: #FF0000;
 
     width: 358px;
+    height: 30px;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    /* white-space: nowrap; */
     overflow: hidden;
 }
 
-@media screen and (max-width:767px) {
+@media screen and (max-width:550px) {
     .popup__error {
         margin: 5px 22px 0 22px;
-        height: 12px;
         width: 238px;
     }
 }
