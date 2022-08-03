@@ -1,37 +1,31 @@
 const config = {
-    formSelector: '.popup__form',
+    // formSelector: '.popup__form',
     popup_set: '.popup__set',
-
-    inputSelector: '.popup__input',
+    // inputSelector: '.popup__input',
     popup_field: '.popup__field',
-
-    submitButtonSelector: '.popup__button',
+    // submitButtonSelector: '.popup__button',
     submit_button: '.popup__submit-button',
-    
-    inactiveButtonClass: 'popup__button_disabled',
+    // inactiveButtonClass: 'popup__button_disabled',
     button_invalid: 'popup__submit-button_activity_invalid',
-
-    inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__error_visible',
-    
+    // inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__error_visible',   
 }
 
 const showInputError = (formElement, inputElement, errorMessage, settings) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    // inputElement.classList.add('form__input_type_error');
     inputElement.classList.add(settings.inputErrorClass);
     errorElement.textContent = errorMessage;
-    // errorElement.classList.add('form__input-error_active');
     errorElement.classList.add(settings.errorClass);
+    inputElement.classList.add(settings.errorClass);
 };
 
 const hideInputError = (formElement, inputElement, settings) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    // inputElement.classList.remove('form__input_type_error');
-    // errorElement.classList.remove('form__input-error_active');
     inputElement.classList.remove(settings.inputErrorClass);
     errorElement.classList.remove(settings.errorClass);
     errorElement.textContent = '';
+    inputElement.classList.remove(settings.errorClass);
+
 };
 
 

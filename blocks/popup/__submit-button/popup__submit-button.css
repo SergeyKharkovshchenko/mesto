@@ -4,7 +4,7 @@
     background: #000000;
     border-radius: 2px;
     padding: 0;
-    margin: 31px auto 36px auto;
+    margin: 17px auto 36px auto;
     color: white;
     font-weight: 400;
     font-size: 18px;
@@ -19,7 +19,7 @@
         height: 46px;
         font-size: 14px;
         line-height: 16.94px;
-        margin: 26px 22px 25px 22px;
+        margin: 10px 22px auto 22px;
     }
 }
 
