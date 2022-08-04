@@ -10,8 +10,8 @@
     margin: auto auto;
 }
 
-@media screen and (max-width:550px) {
+/* @media screen and (max-width:550px) {
     .image-popup__container {
         width: 240px;
     }
-}
+} */

@@ -2,14 +2,15 @@
     object-fit: fill;
     overflow: auto;
     max-width: 75vw;
-    max-height: calc(80vh - 64px);
+    /* max-height: calc(80vh - 64px); */
+    max-height: 75vh;
 }
 
 
-@media screen and (max-width:550px) {
+/* @media screen and (max-width:550px) {
     .image-popup__foto {
         width: 240px;
         height: fit-content;
         margin: 16px auto 0 auto;
     }
-}
+} */

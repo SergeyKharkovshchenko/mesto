@@ -7,15 +7,12 @@
     font-size: 12px;
     line-height: 14.52px;
     color: #FF0000;
-
     width: 358px;
     height: 32px;
-
     text-overflow: ellipsis;
     /* white-space: nowrap; */
     overflow: hidden;
     z-index: 2;
-    
 }
 
 @media screen and (max-width:550px) {
