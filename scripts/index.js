@@ -1,13 +1,33 @@
+import {
+  Card
+} from './Card.js';
+
+import {
+  FormValidator
+} from './FormValidator.js';
+
+const config = {
+  // formSelector: '.popup__form',
+  popup_set: '.popup__set',
+  // inputSelector: '.popup__input',
+  popup_field: '.popup__field',
+  // submitButtonSelector: '.popup__button',
+  submit_button: '.popup__submit-button',
+  // inactiveButtonClass: 'popup__button_disabled',
+  button_invalid: 'popup__submit-button_activity_invalid',
+  // inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible',
+}
+
+
 const popupElementForEdit = document.querySelector('.popup_edit');
 const popupElementForAdd = document.querySelector('.popup_add');
 const nameInputForEdit = document.querySelector('.popup__field-for-name_type_edit');
 const jobInputForEdit = document.querySelector('.popup__field-for-job_type_edit');
 const nameInputForAdd = document.querySelector('.popup__field-for-name_type_add');
 const jobInputForAdd = document.querySelector('.popup__field-for-job_type_add');
-
 const formInputForEdit = document.querySelector('.popup__form-edit');
 const formInputForAdd = document.querySelector('.popup__form-add');
-
 const popupElementForImage = document.querySelector('.image-popup');
 const popupTitleElementForImage = document.querySelector('.image-popup__title');
 const popupFotoElementForImage = document.querySelector('.image-popup__foto');
@@ -16,11 +36,12 @@ const popupOpenButtonElementForAdd = document.querySelector('.profile__add-butto
 const nameElement = document.querySelector('.profile__title');
 const jobElement = document.querySelector('.profile__subtitle');
 const cardsContainer = document.querySelector('.elements');
-const cardTemplate = document.querySelector('#card_template').content;
+// const cardTemplate = document.querySelector('#card_template').content;
 
 const initialCards = [{
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    // link: './images/dombai.png'
   },
   {
     name: 'Челябинская область',
@@ -44,47 +65,17 @@ const initialCards = [{
   }
 ];
 
-
-
-const handleHeart = function (e) {
-    e.target.classList.toggle('element__heart-color-black');
-}
-
-const handleThrashbin = function (e) {
-    e.target.closest('.element').remove();
-   
-}
-
 const handleFoto = function (e) {
-    openPopup(popupElementForImage);
-    const target = e.target;
-    popupTitleElementForImage.textContent = target.alt;
-    popupFotoElementForImage.src = target.src;
-    popupFotoElementForImage.alt = target.alt;
+  openPopup(popupElementForImage);
+  popupTitleElementForImage.textContent = e.querySelector('.element__foto').alt;
+  popupFotoElementForImage.src = e.querySelector('.element__foto').src;
+  popupFotoElementForImage.alt = e.querySelector('.element__foto').alt;
 }
 
 
-function createCard(name, link) {
-  // клонируем содержимое тега template
-const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
-  // наполняем содержимым
-const foto = cardElement.querySelector('.element__foto');
-  foto.src = link; // ? link : initialCards[index].link;
-  foto.alt = name; // ? name : initialCards[index].name;
-  cardElement.querySelector('.element__title').textContent = name; //? name : initialCards[index].name;
-
-  const likeButtonElement = cardElement.querySelector('.element__heart');
-  likeButtonElement.addEventListener('click', handleHeart);
-  const thrashbinButtonElement = cardElement.querySelector('.element__thrashbin');
-  thrashbinButtonElement.addEventListener('click', handleThrashbin);
-  const fotoButtonElement = cardElement.querySelector('.element__foto');
-  fotoButtonElement.addEventListener('click', handleFoto);
-  
-return cardElement
-}
-
-const addCard = function (name, link, index) {
-  const cardElement = createCard(name, link);
+const addCard = function (value, index) {
+  const card = new Card(value, 'template1', handleFoto);
+  const cardElement = card.generateCard();
   if (index != null) {
     cardsContainer.append(cardElement);
   } else {
@@ -92,19 +83,19 @@ const addCard = function (name, link, index) {
   }
 };
 
-initialCards.forEach((value, index) => addCard(value.name, value.link, index));
+initialCards.forEach((value, index) => {
+  addCard(value, index);
+});
 
 const openEditPopup = function () {
-    nameInputForEdit.value = nameElement.textContent;
-    jobInputForEdit.value = jobElement.textContent;
+  nameInputForEdit.value = nameElement.textContent;
+  jobInputForEdit.value = jobElement.textContent;
   openPopup(popupElementForEdit);
-
 }
 
 const openAddPopup = function (e) {
   openPopup(popupElementForAdd);
 }
-
 
 function handleFormEditSubmit(evt) {
   evt.preventDefault();
@@ -115,7 +106,10 @@ function handleFormEditSubmit(evt) {
 
 function handleFormAddSubmit(e) {
   e.preventDefault();
-  addCard(nameInputForAdd.value, jobInputForAdd.value);
+  addCard({
+    name: nameInputForAdd.value,
+    link: jobInputForAdd.value
+  });
   closePopup(popupElementForAdd);
   e.target.reset();
 }
@@ -146,31 +140,37 @@ closerButtons.forEach((button) => {
   button.addEventListener('click', () => closePopup(popup));
 });
 
-
-
-
 function closeByEsc(evt) {
   if (evt.key === "Escape") {
     const openedPopup = document.querySelector('.popup_opened');
-    closePopup(openedPopup); 
+    closePopup(openedPopup);
   }
-}  
+}
 
-
-popupElementForEdit.addEventListener('click', function(e) {
-  if(e.target.classList.contains('popup_opened')){
+popupElementForEdit.addEventListener('click', function (e) {
+  if (e.target.classList.contains('popup_opened')) {
     closePopup(e.target);
   }
 });
 
-popupElementForAdd.addEventListener('click', function(e) {
-  if(e.target.classList.contains('popup_opened')){
+popupElementForAdd.addEventListener('click', function (e) {
+  if (e.target.classList.contains('popup_opened')) {
     closePopup(e.target);
   }
 });
 
-popupElementForImage.addEventListener('click', function(e) {
-  if(e.target.classList.contains('popup_opened')){
+popupElementForImage.addEventListener('click', function (e) {
+  if (e.target.classList.contains('popup_opened')) {
     closePopup(e.target);
   }
 });
+
+const enableValidation = (settings) => {
+  const formList = Array.from(document.querySelectorAll(settings.popup_set));
+  formList.forEach((formElement) => {
+      const validatorFormElement = new FormValidator(settings, formElement);
+      validatorFormElement._setEventListeners();
+  });
+};
+
+enableValidation(config);
