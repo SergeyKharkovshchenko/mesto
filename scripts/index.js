@@ -6,7 +6,7 @@ import {
   FormValidator
 } from './FormValidator.js';
 
-const config = {
+export const config = {
   // formSelector: '.popup__form',
   popup_set: '.popup__set',
   // inputSelector: '.popup__input',
@@ -17,6 +17,10 @@ const config = {
   button_invalid: 'popup__submit-button_activity_invalid',
   // inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible',
+  element__foto: '.element__foto',
+  element__title: '.element__title',
+  _likeButton: '.element__heart',
+  thrashbin: '.element__thrashbin'
 }
 
 
@@ -65,17 +69,24 @@ const initialCards = [{
   }
 ];
 
-const handleFoto = function (e) {
+function handleCardClick(name, link) {
+  // устанавливаем ссылку
+  popupFotoElementForImage.src = link;
+  // устанавливаем подпись картинке
+  popupTitleElementForImage.textContent = name;
+  popupFotoElementForImage.alt = name;
+  // открываем попап универсальной функцией, которая навешивает обработчик Escape внутри себя
   openPopup(popupElementForImage);
-  popupTitleElementForImage.textContent = e.querySelector('.element__foto').alt;
-  popupFotoElementForImage.src = e.querySelector('.element__foto').src;
-  popupFotoElementForImage.alt = e.querySelector('.element__foto').alt;
 }
 
+function createCard(value) {
+  const card = new Card(value, '#card_template', handleCardClick);
+  const cardElement = card.generateCard();
+ return cardElement
+}
 
 const addCard = function (value, index) {
-  const card = new Card(value, 'template1', handleFoto);
-  const cardElement = card.generateCard();
+  const cardElement = createCard(value)
   if (index != null) {
     cardsContainer.append(cardElement);
   } else {
@@ -95,6 +106,7 @@ const openEditPopup = function () {
 
 const openAddPopup = function (e) {
   openPopup(popupElementForAdd);
+  formValidators['AddForm'].resetValidation();
 }
 
 function handleFormEditSubmit(evt) {
@@ -130,15 +142,14 @@ popupOpenButtonElementForAdd.addEventListener('click', openAddPopup);
 formInputForEdit.addEventListener('submit', handleFormEditSubmit);
 formInputForAdd.addEventListener('submit', handleFormAddSubmit);
 
-// находим все крестики проекта по универсальному селектору
-const closerButtons = document.querySelectorAll('.popup__close');
-
-closerButtons.forEach((button) => {
-  // находим 1 раз ближайший к крестику попап 
-  const popup = button.closest('.popup');
-  // устанавливаем обработчик закрытия на крестик
-  button.addEventListener('click', () => closePopup(popup));
-});
+// // находим все крестики проекта по универсальному селектору
+// const closerButtons = document.querySelectorAll('.popup__close');
+// closerButtons.forEach((button) => {
+//   // находим 1 раз ближайший к крестику попап 
+//   const popup = button.closest('.popup');
+//   // устанавливаем обработчик закрытия на крестик
+//   button.addEventListener('click', () => closePopup(popup));
+// });
 
 function closeByEsc(evt) {
   if (evt.key === "Escape") {
@@ -147,30 +158,58 @@ function closeByEsc(evt) {
   }
 }
 
-popupElementForEdit.addEventListener('click', function (e) {
-  if (e.target.classList.contains('popup_opened')) {
-    closePopup(e.target);
-  }
-});
+// popupElementForEdit.addEventListener('click', function (e) {
+//   if (e.target.classList.contains('popup_opened')) {
+//     closePopup(e.target);
+//   }
+// });
+// popupElementForAdd.addEventListener('click', function (e) {
+//   if (e.target.classList.contains('popup_opened')) {
+//     closePopup(e.target);
+//   }
+// });
+// popupElementForImage.addEventListener('click', function (e) {
+//   if (e.target.classList.contains('popup_opened')) {
+//     closePopup(e.target);
+//   }
+// });
 
-popupElementForAdd.addEventListener('click', function (e) {
-  if (e.target.classList.contains('popup_opened')) {
-    closePopup(e.target);
-  }
-});
 
-popupElementForImage.addEventListener('click', function (e) {
-  if (e.target.classList.contains('popup_opened')) {
-    closePopup(e.target);
-  }
-});
+const popups = document.querySelectorAll('.popup')
 
-const enableValidation = (settings) => {
-  const formList = Array.from(document.querySelectorAll(settings.popup_set));
+popups.forEach((popup) => {
+    popup.addEventListener('mousedown', (evt) => {
+        if (evt.target.classList.contains('popup_opened')) {
+            closePopup(popup)
+        }
+        if (evt.target.classList.contains('popup__close')) {
+          closePopup(popup)
+        }
+    })
+})
+
+const formValidators = {}
+
+// Включение валидации
+const enableValidation = (config) => {
+  const formList = Array.from(document.querySelectorAll(config.popup_set))
   formList.forEach((formElement) => {
-      const validatorFormElement = new FormValidator(settings, formElement);
-      validatorFormElement._setEventListeners();
+    const validator = new FormValidator(config, formElement)
+// получаем данные из атрибута `name` у формы
+    const formName = formElement.getAttribute('name')
+   // записываем в объект под именем формы
+    formValidators[formName] = validator;
+   validator.enableValidation();
   });
 };
+
+
+// const enableValidation = (settings) => {
+//   const formList = Array.from(document.querySelectorAll(settings.popup_set));
+//   formList.forEach((formElement) => {
+//       const validatorFormElement = new FormValidator(settings, formElement);
+//       validatorFormElement.setEventListeners();
+//   });
+// };
 
 enableValidation(config);

@@ -8,7 +8,7 @@
     overflow: hidden;
     height: 0;
     width: 100%;
-    animation: fade-out 2s;
+    animation: fade-out 200ms;
 }
 
 

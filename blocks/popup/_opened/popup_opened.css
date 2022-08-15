@@ -3,7 +3,7 @@
   width: 100%;
   opacity: 1;
   overflow: visible;
-  animation: fade-in 2s;
+  animation: fade-in 200ms;
 }
 
 @keyframes fade-in {
