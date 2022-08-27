@@ -1,3 +1,7 @@
+import '../pages/index.css';
+// import './pages/index.css';
+
+
 import {
   Card
 } from './Card.js';
