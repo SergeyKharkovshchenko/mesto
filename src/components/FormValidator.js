@@ -1,11 +1,11 @@
-
-export class FormValidator {
+export default class FormValidator {
     constructor(settings, formElement) {
         this._settings = settings;
         this._formElement = formElement;
         this._inputList = Array.from(this._formElement.querySelectorAll(this._settings.popup_field));
         this.checkInputValidity = this.checkInputValidity.bind(this);
         this.toggleButtonState = this.toggleButtonState.bind(this);
+        this.buttonElement = this._formElement.querySelector(this._settings.submit_button);
     }
 
     enableValidation = () => {
@@ -46,13 +46,12 @@ export class FormValidator {
     };
 
     toggleButtonState = () => {
-        const buttonElement = this._formElement.querySelector(this._settings.submit_button);
         if (this.hasInvalidInput()) {
-            buttonElement.setAttribute('disabled', true);
-            buttonElement.classList.add(this._settings.button_invalid);
+            this.buttonElement.setAttribute('disabled', true);
+            this.buttonElement.classList.add(this._settings.button_invalid);
         } else {
-            buttonElement.removeAttribute('disabled');
-            buttonElement.classList.remove(this._settings.button_invalid);
+            this.buttonElement.removeAttribute('disabled');
+            this.buttonElement.classList.remove(this._settings.button_invalid);
         }
     }
 
@@ -64,13 +63,13 @@ export class FormValidator {
 
     resetValidation() {
         // управляем кнопкой  
-        this.toggleButtonState(); 
+        this.toggleButtonState();
         //очищаем ошибки 
         this._inputList.forEach((inputElement) => {
-          this.hideInputError(inputElement) 
+            this.hideInputError(inputElement)
         });
-      }
-  
+    }
+
 }
 
 
@@ -92,4 +91,3 @@ export class FormValidator {
 //         input.setCustomValidity('Введите ссылку');
 //     }
 // }
-

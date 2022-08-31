@@ -9,8 +9,8 @@
     border-radius: 10px;
     z-index: 3;
     margin: calc((100vh - 330px)/2) auto;
+    /* margin: auto auto; */
 }
-
 
 @media screen and (max-width:550px) {
     .popup__set {
@@ -18,4 +18,18 @@
         height: 322px;
         margin: calc((100vh - 322px)/2) auto;
     }
+}
+
+.popup__form-add {
+    height: 330px;
+    margin: auto auto;
+    border: 0;
+    width: 430px;
+}
+
+.popup__form-edit {
+    height: 330px;
+    margin: auto auto;
+    border: 0;
+    width: 430px;
 }

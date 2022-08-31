@@ -10,7 +10,9 @@ https://sergeykharkovshchenko.github.io/mesto/
   + js кастомные валидаторы форм
   + js функции
   + js массивы
+  + классы
   + grid
   + flex
   + DOM
   + js event handler
+  + js webpack
