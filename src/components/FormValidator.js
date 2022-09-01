@@ -24,18 +24,17 @@ export default class FormValidator {
             })
         });
 
-        document.querySelectorAll('.popup').forEach((inputElement) => {
-
-            inputElement.addEventListener('click', () => {
-                if (!inputElement.classList.contains('popup_opened')) {
+        document.querySelectorAll('.popup').forEach((form) => {
+            form.addEventListener('click', () => {
+                if (!form.classList.contains('popup_opened')) {
                     this._resetValidation();
                 }
             });
-
-            inputElement.addEventListener('keydown', this._handleEscClose);
-            
+            form.addEventListener('submit', () => {
+                    this._resetValidation();
+            });
+            form.addEventListener('keydown', this._handleEscClose);
         });
-
     }
 
     _handleEscClose = (event) => {
