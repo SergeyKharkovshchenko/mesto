@@ -1,19 +1,3 @@
-const config = {
-  // formSelector: '.popup__form',
-  formSelector: '.popup__set',
-  // inputSelector: '.popup__input',
-  popup_field: '.popup__field',
-  // submitButtonSelector: '.popup__button',
-  submit_button: '.popup__submit-button',
-  // inactiveButtonClass: 'popup__button_disabled',
-  button_invalid: 'popup__submit-button_activity_invalid',
-  // inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible',
-  element__foto: '.element__foto',
-  element__title: '.element__title',
-  _likeButton: '.element__heart',
-  thrashbin: '.element__thrashbin'
-}
 
 export default class Card {
 
@@ -27,6 +11,10 @@ export default class Card {
     this._link = card.link;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
+    this._element__foto = '.element__foto';
+    this._likeButton = '.element__heart';
+    this._thrashbin = '.element__thrashbin';
+    this._element__title = '.element__title';
   }
 
   _getTemplate() {
@@ -40,27 +28,27 @@ export default class Card {
 
   generateCard() {
     const _element = this._getTemplate();
-    this._cardImage = _element.querySelector(config.element__foto);
+    this._cardImage = _element.querySelector(this._element__foto);
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
-    _element.querySelector(config.element__title).textContent = this._name;
+    _element.querySelector(this._element__title).textContent = this._name;
     this._setEventListenersForCard(_element);
     return _element;
   }
 
   _setEventListenersForCard(_element) {
-    this.likeButtonElement = _element.querySelector(config._likeButton);
+    this.likeButtonElement = _element.querySelector(this._likeButton);
     this.likeButtonElement.addEventListener('click', () => {
       this._handleHeart();
     });
 
-    this.thrashbinButtonElement = _element.querySelector(config.thrashbin);
+    this.thrashbinButtonElement = _element.querySelector(this._thrashbin);
     this.thrashbinButtonElement.addEventListener('click', () => {
       this._handleThrashbin(_element);
     });
 
     this._cardImage.addEventListener('click', () => {
-      this._handleCardClick(this._name, this._link)
+      this._handleCardClick();
     });
   }
 

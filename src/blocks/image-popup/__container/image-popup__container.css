@@ -5,9 +5,9 @@
     justify-content: center;
     background: transparent;
     box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
-    height: 75vh;
+    height: fit-content;
     width: fit-content;
-    margin: 12.5vh auto;
+    margin: auto auto;
 }
 
 /* @media screen and (max-width:550px) {

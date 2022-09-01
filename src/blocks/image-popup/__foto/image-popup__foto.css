@@ -1,8 +1,6 @@
 .image-popup__foto{
-    /* object-fit: fill; */
     overflow: auto;
     max-width: 75vw;
-    /* max-height: calc(80vh - 64px); */
     max-height: 75vh;
 }
 

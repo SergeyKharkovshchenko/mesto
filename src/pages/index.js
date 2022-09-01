@@ -29,48 +29,49 @@ const popupOpenButtonElementForEdit = document.querySelector('.profile__edit-but
 const popupOpenButtonElementForAdd = document.querySelector('.profile__add-button');
 
 const initialCards = [{
-  name: 'Архыз',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  // link: './images/dombai.png'
-},
-{
-  name: 'Челябинская область',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-},
-{
-  name: 'Иваново',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-},
-{
-  name: 'Камчатка',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-},
-{
-  name: 'Холмогорский район',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-},
-{
-  name: 'Байкал',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-}
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    // link: './images/dombai.png'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
 ];
 
-const openPopupImage = new PopupWithImage('.image-popup');
-openPopupImage.setEventListeners();
+const imagePopup = new PopupWithImage('.image-popup');
+imagePopup.setEventListeners();
 
-function createCard(item){
-const card = new Card
-({
-  card: item, 
-  templateSelector: '#card_template', 
-  handleCardClick: () => {
-    openPopupImage.open(item.name, item.link);
-    }});
-    const cardElement = card.generateCard();
-    return   cardElement;
-  }
+function createCard(item) {
+  const card = new Card({
+    card: item,
+    templateSelector: '#card_template',
+    handleCardClick: () => {
+      imagePopup.open(item.name, item.link);
+    }
+  });
+  const cardElement = card.generateCard();
+  return cardElement;
+}
 
-const defaultCardList = new Section({ items: initialCards , 
+const defaultCardList = new Section({
+  items: initialCards,
   renderer: (item) => {
     defaultCardList.addItem(createCard(item));
   }
@@ -79,40 +80,49 @@ defaultCardList.renderItems();
 
 
 const popupAdd = new PopupWithForm({
-  popupSelector:'.popup_add',
+  popupSelector: '.popup_add',
   handleFormSubmit: (evt, popupInputValues) => {
-      evt.preventDefault();  
-      defaultCardList.addItem(createCard({name: popupInputValues.name, link: popupInputValues.link }));
+    evt.preventDefault();
+    defaultCardList.addItem(createCard({
+      name: popupInputValues.name,
+      link: popupInputValues.link
+    }));
   }
 });
 popupAdd.setEventListeners();
-popupOpenButtonElementForAdd.addEventListener('click', () => {popupAdd.open(null,null)});
+popupOpenButtonElementForAdd.addEventListener('click', () => {
+  popupAdd.open()
+});
 
-const names = new UserInfo('.profile__title', '.profile__subtitle');
+const names = new UserInfo({
+  userNameSelector: '.profile__title',
+  jobDescriptionSelector: '.profile__subtitle'
+});
 
-const popupEdit = new PopupWithForm ({
-  popupSelector:'.popup_edit',
+const popupEdit = new PopupWithForm({
+  popupSelector: '.popup_edit',
   handleFormSubmit: (evt, popupInputValues) => {
-      evt.preventDefault();
-    names.setUserInfo({name: popupInputValues.name, description: popupInputValues.description});
+    evt.preventDefault();
+    names.setUserInfo({
+      name: popupInputValues.name,
+      description: popupInputValues.description
+    });
   }
-}); 
+});
 popupEdit.setEventListeners();
-popupOpenButtonElementForEdit.addEventListener('click', () => {popupEdit.open(names.GetUserInfo().name, names.GetUserInfo().description)});
+popupOpenButtonElementForEdit.addEventListener('click', () => {
+  popupEdit.open();
+  popupEdit.insertData(names.getUserInfo());
+});
 
-
-let validator = {};
 
 // Включение валидации
 const enableValidation = (config) => {
   const formList = Array.from(document.querySelectorAll(config.formSelector))
   formList.forEach((formElement) => {
-     validator = new FormValidator(config, formElement);
-     validator.enableValidation();
-      });
-      
+    let validator = new FormValidator(config, formElement);
+    validator.enableValidation();
+  });
 };
-
-
 
 enableValidation(config);

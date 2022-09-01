@@ -5,6 +5,7 @@ export default class FormValidator {
         this._inputList = Array.from(this._formElement.querySelectorAll(this._settings.popup_field));
         this.checkInputValidity = this.checkInputValidity.bind(this);
         this.toggleButtonState = this.toggleButtonState.bind(this);
+        this._resetValidation = this._resetValidation.bind(this);
         this.buttonElement = this._formElement.querySelector(this._settings.submit_button);
     }
 
@@ -15,11 +16,32 @@ export default class FormValidator {
     setEventListeners = () => {
         // чтобы проверить состояние кнопки в самом начале
         this.toggleButtonState();
+
         this._inputList.forEach((inputElement) => {
-            inputElement.addEventListener('input', () => this.checkInputValidity(inputElement));
-            // чтобы проверять его при изменении любого из полей
-            inputElement.addEventListener('input', () => this.toggleButtonState());
+            inputElement.addEventListener('input', () => {
+                this.checkInputValidity(inputElement);
+                this.toggleButtonState();
+            })
         });
+
+        document.querySelectorAll('.popup').forEach((inputElement) => {
+
+            inputElement.addEventListener('click', () => {
+                if (!inputElement.classList.contains('popup_opened')) {
+                    this._resetValidation();
+                }
+            });
+
+            inputElement.addEventListener('keydown', this._handleEscClose);
+            
+        });
+
+    }
+
+    _handleEscClose = (event) => {
+        if (event.key === "Escape") {
+            this._resetValidation();
+        }
     }
 
     checkInputValidity = (inputElement) => {
@@ -61,7 +83,7 @@ export default class FormValidator {
         });
     }
 
-    resetValidation() {
+    _resetValidation() {
         // управляем кнопкой  
         this.toggleButtonState();
         //очищаем ошибки 

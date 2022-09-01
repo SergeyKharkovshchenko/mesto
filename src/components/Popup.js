@@ -21,22 +21,14 @@ export class Popup {
         }
     }
 
-
-
     setEventListeners() {
         this._popup.addEventListener('mousedown', (evt) => {
             if (evt.target.classList.contains('popup_opened')) {
-                console.log("popup_opened");
                 this.close();
             }
             if (evt.target.classList.contains('popup__close')) {
                 this.close();
             }
-            if (evt.target.classList.contains('image-popup__container') && !evt.target.classList.contains('image-popup__foto')) {
-                console.log("popup__foto");
-                this.close();
-            }
-
         });
     }
 }
