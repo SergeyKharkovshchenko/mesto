@@ -7,7 +7,6 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 
-
 const config = {
   // formSelector: '.popup__form',
   formSelector: '.popup__set',
@@ -21,12 +20,14 @@ const config = {
   errorClass: 'popup__error_visible',
   element__foto: '.element__foto',
   element__title: '.element__title',
-  _likeButton: '.element__heart',
+  likeButton: '.element__heart',
   thrashbin: '.element__thrashbin'
 }
 
 const popupOpenButtonElementForEdit = document.querySelector('.profile__edit-button');
 const popupOpenButtonElementForAdd = document.querySelector('.profile__add-button');
+const nameField = document.querySelector('.popup__field-for-name');
+const jobField = document.querySelector('.popup__field-for-job');
 
 const initialCards = [{
     name: 'Архыз',
@@ -64,7 +65,8 @@ function createCard(item) {
     templateSelector: '#card_template',
     handleCardClick: () => {
       imagePopup.open(item.name, item.link);
-    }
+    },
+    config
   });
   const cardElement = card.generateCard();
   return cardElement;
@@ -91,6 +93,7 @@ const popupAdd = new PopupWithForm({
 });
 popupAdd.setEventListeners();
 popupOpenButtonElementForAdd.addEventListener('click', () => {
+  newCardValidation.resetValidation();
   popupAdd.open()
 });
 
@@ -111,18 +114,17 @@ const popupEdit = new PopupWithForm({
 });
 popupEdit.setEventListeners();
 popupOpenButtonElementForEdit.addEventListener('click', () => {
+  profileValidation.resetValidation();
+  nameField.value = names.getUserInfo().name;
+  jobField.value = names.getUserInfo().description;
   popupEdit.open();
-  popupEdit.insertData(names.getUserInfo());
 });
 
 
 // Включение валидации
-const enableValidation = (config) => {
-  const formList = Array.from(document.querySelectorAll(config.formSelector))
-  formList.forEach((formElement) => {
-    let validator = new FormValidator(config, formElement);
-    validator.enableValidation();
-  });
-};
-
-enableValidation(config);
+  const formEditProfile = document.querySelector('.popup__form-edit');
+  const formAddCard = document.querySelector('.popup__form-add');
+    const profileValidation = new FormValidator(config, formEditProfile);
+    const newCardValidation = new FormValidator(config, formAddCard);
+    profileValidation.enableValidation();
+    newCardValidation.enableValidation(); 

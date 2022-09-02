@@ -4,17 +4,18 @@ export default class Card {
   constructor({
     card,
     templateSelector,
-    handleCardClick
+    handleCardClick,
+    config
   }) {
     this._data = card;
     this._name = card.name;
     this._link = card.link;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
-    this._element__foto = '.element__foto';
-    this._likeButton = '.element__heart';
-    this._thrashbin = '.element__thrashbin';
-    this._element__title = '.element__title';
+    this._element__foto = config.element__foto;
+    this._likeButton = config.likeButton;
+    this._thrashbin = config.thrashbin;
+    this._element__title = config.element__title;
   }
 
   _getTemplate() {
