@@ -2,7 +2,7 @@ import {
     Popup
 } from './Popup.js';
 
-export default class PopupWithForm extends Popup {
+export default class PopupWithConfirmation extends Popup {
 
     constructor({
         popupSelector,
@@ -10,23 +10,13 @@ export default class PopupWithForm extends Popup {
     }) {
         super(popupSelector);
         this._handleFormSubmit = handleFormSubmit;
-        this._inputs = this._popup.querySelectorAll('.popup__field');
         this._form = this._popup.querySelector('.popup__container');
-        // this._submitButton = this._popup.querySelector('.popup__submit-button');
-    }
-
-    _getInputValues() {
-        this._popupInputValues = {};
-        this._inputs.forEach((input) => {
-            this._popupInputValues[input.name] = input.value;
-        });
-        return this._popupInputValues;
     }
 
     setEventListeners() {
         super.setEventListeners();
         this._form.addEventListener('submit', (e) => {
-            this._handleFormSubmit(e, this._getInputValues());
+            this._handleFormSubmit(e, this.id, this._element);
             this.close();
         });
     }
@@ -36,8 +26,10 @@ export default class PopupWithForm extends Popup {
         super.close();
     }
 
-    open() {
+    open (id, _element) {
         super.open();
+        this.id = id;
+        this._element = _element;
     }
     
 }

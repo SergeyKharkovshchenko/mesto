@@ -8,11 +8,16 @@
     border: none;
     background-color: transparent;
     padding: 0;
-    margin: 0;
+    margin: auto auto 0 auto;
 }
 
 .element__heart:hover {
     cursor: pointer;
     opacity: 0.6;
+}
+
+.element__heart-and-counter{
+    display: flex;
+    flex-direction: column;
 }
 

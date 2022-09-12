@@ -24,9 +24,12 @@
         <!-- блок профиль -->
 
         <section class="profile">
-
-            <div class="profile__card">
-                <img src="<%=require('../src/images/custo.jpg')%>" class="profile__avatar" alt="аватар">
+            <div class="profile__data">
+                <div class="profile__card">
+                    <img src="<%=require('../src/images/elbrus.png')%>" class="profile__avatar" alt="аватар">
+                    <img src="<%=require('../src/images/avatar_pen.svg')%>" alt="Profile Image"
+                        class="profile__hoverImg">
+                </div>
 
                 <div class="profile__profile-info">
                     <div class="profile__info-first-line">
@@ -35,6 +38,7 @@
                     </div>
                     <p class="profile__subtitle">Исследователь океана</p>
                 </div>
+
             </div>
 
             <button class="profile__add-button" type="button">
@@ -53,7 +57,10 @@
                         <button class="element__thrashbin" type="button"> </button>
                         <div class="element__bottom">
                             <h2 class="element__title"></h2>
-                            <button class="element__heart" type="button"></button>
+                            <div class="element__heart-and-counter">
+                                <button class="element__heart" type="button"></button>
+                                <p class="element__likescounter"></p>
+                            </div>
                         </div>
                     </li>
                 </template>
@@ -74,7 +81,7 @@
 
 
     <section class="popup popup_edit">
-        <form class="popup__container popup__form-edit"  novalidate>
+        <form class="popup__container popup__form-edit" novalidate>
             <fieldset class="popup__set popup__setEdit" name="EditForm">
                 <button class="popup__close popup__close_type_edit" type="button"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
@@ -111,14 +118,37 @@
         </form>
     </section>
 
-
-
     <section class="popup image-popup">
         <div class="image-popup__container" novalidate>
             <button class="popup__close image-popup__close" type="button"></button>
             <img class="image-popup__foto">
             <h2 class="image-popup__title"></h2>
         </div>
+    </section>
+
+    <section class="popup delete-confirmation-popup">
+        <form class="popup__container popup__form-delete-confirmation" novalidate>
+            <fieldset class="popup__set delete-confirmation-popup__set" name="AddForm">
+                <button class="popup__close delete-confirmation-popup__title" type="button"></button>
+                <h2 class="popup__title">Вы уверены?</h2>
+                <button type="submit" class="popup__submit-button delete-confirmation-popup__submit-button">Да</button>
+            </fieldset>
+        </form>
+    </section>
+
+    <section class="popup popup_avatar">
+        <form class="popup__container popup__form-avatar" novalidate>
+            <fieldset class="popup__set popup__setAvatar" name="avatarForm">
+                <button class="popup__close popup__close_type_avatar" type="button"></button>
+                <h2 class="popup__title">Обновить аватар</h2>
+                <input type="url" name="link" id="avatar-name"
+                    class="popup__field popup__field-for-name popup__field-for-name_type_avatar" minlength="2" required
+                    required placeholder="Ссылка на аватар">
+                <span class="popup__error avatar-name-error"></span>
+                <button type="submit" class="popup__submit-button popup__submit-button_type-avatar"
+                    disabled>Сохранить</button>
+            </fieldset>
+        </form>
     </section>
 
     <!-- <script type="module" src="./scripts/index.js"></script> -->

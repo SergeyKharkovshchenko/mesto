@@ -9,10 +9,10 @@ export default class PopupWithImage extends Popup {
         this._popupFotoElementForImage = this._popup.querySelector('.image-popup__foto');
 
     }
-    open(name, link) {
-        this._popupFotoElementForImage.src = link;
-        this._popupTitleElementForImage.textContent = name;
-        this._popupFotoElementForImage.alt = name;
+    open(data) {
+        this._popupFotoElementForImage.src = data.link;
+        this._popupTitleElementForImage.textContent = data.name;
+        this._popupFotoElementForImage.alt = data.name;
         super.open();
     }
 }
