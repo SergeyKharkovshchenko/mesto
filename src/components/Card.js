@@ -1,20 +1,21 @@
-
 export default class Card {
-
   constructor(
     {
-    card,
-    templateSelector,
-    handleCardClick,
-    handleLikeClick,
-    handleDeleteIconClick,
-    config
-  }, myUserId) {
+      card,
+      templateSelector,
+      handleCardClick,
+      handleLikeClick,
+      handleDeleteIconClick,
+      config,
+    },
+    myUserId
+  ) {
+    this._card = card;
     this._name = card.name;
     this._link = card.link;
     this._id = card._id;
     this._owner_id = card.owner._id;
-    this._likesArray = card.likes;    
+    this._likesArray = card.likes;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
     this._handleLikeClick = handleLikeClick;
@@ -31,49 +32,70 @@ export default class Card {
   _getTemplate() {
     const cardTemplate = document
       .querySelector(this._templateSelector)
-      .content
-      .querySelector('.element')
+      .content.querySelector(".element")
       .cloneNode(true);
     return cardTemplate;
   }
 
-  generateCard() {
-    const _element = this._getTemplate();
-    this._cardImage = _element.querySelector(this._element__foto);
-    this._cardImage.src = this._link;
-    this._cardImage.alt = this._name;
-    _element.querySelector(this._element__title).textContent = this._name;
-    _element.querySelector(this._element__likescounter).textContent = this._likesArray.length
-    this._setEventListenersForCard(_element);
-    if (this._owner_id != this._myUserId ) _element.querySelector(this._thrashbin).remove();
-    if (this._likesArray.some( (userObj) => { 
-    return userObj._id === this._myUserId})) _element.querySelector(this._likeButton).classList.add(this._blackLikeButton);
-    return _element;
+  setUpdatedLikesArray(card) {
+    this._card.likes = card.likes;
+    return this._card;
   }
 
-  _setEventListenersForCard(_element) {
-    this.likeButtonElement = _element.querySelector(this._likeButton);
-    this.likeButtonElement.addEventListener('click', () => {
-    this._handleLikeClick(_element);
-    this.likeButtonElement.classList.toggle('element__heart-color-black');
+  setUpdatedLikeArrayLength(newLength) {
+    this._element.querySelector(this._element__likescounter).textContent =
+      newLength;
+  }
+
+  generateCard() {
+    this._element = this._getTemplate();
+    this._cardImage = this._element.querySelector(this._element__foto);
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name;
+    this._element.querySelector(this._element__title).textContent = this._name;
+    this._element.querySelector(this._element__likescounter).textContent =
+      this._likesArray.length;
+    this._setEventListenersForCard(this._element);
+    if (this._owner_id != this._myUserId)
+      this._element.querySelector(this._thrashbin).remove();
+    if (
+      this._likesArray.some((userObj) => {
+        return userObj._id === this._myUserId;
+      })
+    )
+      this._element
+        .querySelector(this._likeButton)
+        .classList.add(this._blackLikeButton);
+    return this._element;
+  }
+
+  _setEventListenersForCard() {
+    this.likeButtonElement = this._element.querySelector(this._likeButton);
+    this.likeButtonElement.addEventListener("click", () => {
+      this._handleLikes();
     });
 
-    this.thrashbinButtonElement = _element.querySelector(this._thrashbin);
-    this.thrashbinButtonElement.addEventListener('click', () => {
-      this._handleThrashbin(_element);
+    this.thrashbinButtonElement = this._element.querySelector(this._thrashbin);
+    this.thrashbinButtonElement.addEventListener("click", () => {
+      this._handleThrashbin(this._element);
     });
 
-    this._cardImage.addEventListener('click', () => {
+    this._cardImage.addEventListener("click", () => {
       this._handleCardClick();
     });
   }
 
-  _handleLikeClick(_element) {
-    this._handleLikeClick(_element);
+  _handleLikes() {
+    this._handleLikeClick(this.likeButtonElement);
   }
 
-    _handleThrashbin(_element) {      
-    this._handleDeleteIconClick(this._id, _element);
-    }
+  _handleThrashbin() {
+    this._handleDeleteIconClick(this._id, this._element);
+  }
+
+  removeFromDom(element){
+    element.remove();
+    element = null;
+}
 
 }

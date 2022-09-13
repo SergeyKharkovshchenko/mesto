@@ -4,14 +4,10 @@ export default class UserInfo {
         userNameSelector,
         jobDescriptionSelector,
         avatarSelector,
-        id,
-        cohort
     }) {
         this._nameDescription = document.querySelector(userNameSelector);
         this._jobDescription = document.querySelector(jobDescriptionSelector);
         this._avatar = document.querySelector(avatarSelector);
-        this._id = id
-        this._cohort = cohort
     }
 
     getUserInfo() {
@@ -19,8 +15,8 @@ export default class UserInfo {
             name: this._nameDescription.textContent,
             about: this._jobDescription.textContent,
             avatar: this._avatar,
-            _id: "be6e0a88cceace486bcffd5d",
-            cohort: 'cohort-50'
+            _id: this._id,
+            cohort: this._cohort
         }
     }
 
