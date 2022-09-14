@@ -77,7 +77,7 @@ export default class Card {
 
     this.thrashbinButtonElement = this._element.querySelector(this._thrashbin);
     this.thrashbinButtonElement.addEventListener("click", () => {
-      this._handleThrashbin(this._element);
+      this._handleThrashbin();
     });
 
     this._cardImage.addEventListener("click", () => {
@@ -86,16 +86,20 @@ export default class Card {
   }
 
   _handleLikes() {
-    this._handleLikeClick(this.likeButtonElement);
+    this._handleLikeClick();
   }
 
   _handleThrashbin() {
-    this._handleDeleteIconClick(this._id, this._element);
+    this._handleDeleteIconClick(this._id);
   }
 
-  removeFromDom(element){
-    element.remove();
-    element = null;
+  removeFromDom(){
+    this._element.remove();
+    this._element = null;
+}
+
+toggleLikeColor(){
+  this.likeButtonElement.classList.toggle(this._blackLikeButton);
 }
 
 }

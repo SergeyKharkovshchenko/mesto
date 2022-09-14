@@ -40,13 +40,6 @@ const nameField = document.querySelector(".popup__field-for-name");
 const jobField = document.querySelector(".popup__field-for-job");
 const profile__avatar = document.querySelector(".profile__avatar");
 
-const addSubmitButton = document.querySelector(
-  ".popup__submit-button_type-add"
-);
-const avatarSubmitButton = document.querySelector(
-  ".popup__submit-button_type-avatar"
-);
-
 const api = new Api({
   baseUrl: "https://nomoreparties.co/v1/cohort-50/",
   headers: {
@@ -68,7 +61,7 @@ const popupAdd = new PopupWithForm({
   popupSelector: ".popup_add",
   handleFormSubmit: (evt, popupInputValues) => {
     evt.preventDefault();
-    addSubmitButton.renameButton("Сохранение...");
+    popupAdd.renameButton("Сохранение...");
     api
       .addMyCardToCloud(popupInputValues)
       .then((res) =>
@@ -78,7 +71,7 @@ const popupAdd = new PopupWithForm({
       .catch((err) => {
         console.log(err);
       })
-      .finally(() => addSubmitButton.renameButton("Создать"));
+      .finally(() => popupAdd.renameButton("Создать"));
   },
 });
 popupAdd.setEventListeners();
@@ -106,20 +99,20 @@ function createCard(item, myUser) {
       handleCardClick: () => {
         imagePopup.open(item);
       },
-      handleLikeClick: (likeButtonElement) => {
+      handleLikeClick: () => {
         api
           .handleLikesOnCloud(item, myUser)
           .then((res) => card.setUpdatedLikesArray(res))
           .then((res) => card.setUpdatedLikeArrayLength(res.likes.length))
           .then(() =>
-            likeButtonElement.classList.toggle("element__heart-color-black")
+            card.toggleLikeColor()
           )
           .catch((err) => {
             console.log(err);
           });
       },
-      handleDeleteIconClick: (id, element) => {
-        popupDeleteConfirmation.open(id, element, card);
+      handleDeleteIconClick: (id) => {
+        popupDeleteConfirmation.open(id, card);
       },
       config,
     },
@@ -131,12 +124,12 @@ function createCard(item, myUser) {
 
 const popupDeleteConfirmation = new PopupWithConfirmation({
   popupSelector: ".delete-confirmation-popup",
-  handleFormSubmit: (evt, id, element, card) => {
+  handleFormSubmit: (evt, id, card) => {
     evt.preventDefault();
     api
       .deleteCardFromCloud(id)
       .then(() => popupDeleteConfirmation.close())
-      .then(() => card.removeFromDom(element))
+      .then(() => card.removeFromDom())
       .catch((err) => console.log(err));
   },
 });
